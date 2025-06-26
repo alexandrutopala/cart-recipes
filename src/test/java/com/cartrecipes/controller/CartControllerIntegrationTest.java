@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Set;
 
+import com.cartrecipes.CartRecipesApplication;
+import com.cartrecipes.config.H2Config;
 import com.cartrecipes.controller.dto.recipe.AddRecipesToCartDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@SpringBootTest
+@SpringBootTest(classes = {H2Config.class, CartRecipesApplication.class})
 @AutoConfigureMockMvc
 class CartControllerIntegrationTest {
     @Autowired
