@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,5 +23,6 @@ public class Product {
     private String name;
 
     @Column(name = "price_in_cents", nullable = false)
+    @Min(0)
     private Integer priceInCents;
 }

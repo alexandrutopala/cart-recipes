@@ -1,6 +1,7 @@
 package com.cartrecipes.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Cart {
     private Long id;
 
     @Column(name = "total_in_cents", nullable = false)
+    @Min(0)
     private Integer totalInCents;
 
     @ManyToMany
