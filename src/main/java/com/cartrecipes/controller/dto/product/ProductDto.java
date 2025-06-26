@@ -1,4 +1,12 @@
 package com.cartrecipes.controller.dto.product;
 
-public record ProductDto(Long id, String name, Integer priceInCents) {
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class ProductDto {
+    private Long id;
+    private String name;
+    private Integer priceInCents;
 }

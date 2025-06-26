@@ -1,5 +1,6 @@
 package com.cartrecipes.service.recipe;
 
+import com.cartrecipes.exception.NotFoundException;
 import com.cartrecipes.model.Recipe;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -28,6 +29,6 @@ public class RecipeService {
     @Transactional(readOnly = true)
     public Recipe findWithProductsById(Long id) {
         return recipeRepository.findWithProductsById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Recipe not found with id: " + id));
+                .orElseThrow(() -> new NotFoundException("Recipe not found with id: " + id));
     }
 }

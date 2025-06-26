@@ -21,8 +21,8 @@ public class CartService {
     private final RecipeService recipeService;
 
     @Transactional(readOnly = true)
-    public Cart findById(Long id) {
-        return cartRepository.findById(id)
+    public Cart findWithRecipesAndProductsById(Long id) {
+        return cartRepository.findWithRecipesAndProductsById(id)
                 .orElseThrow(() -> new NotFoundException("Cart not found with id: " + id));
     }
 

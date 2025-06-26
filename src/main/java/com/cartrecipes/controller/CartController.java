@@ -22,7 +22,7 @@ public class CartController {
 
     @GetMapping("/{cartId}")
     public CartDto findById(@PathVariable Long cartId) {
-        var cart = cartService.findById(cartId);
+        var cart = cartService.findWithRecipesAndProductsById(cartId);
         return modelMapper.map(cart, CartDto.class);
     }
 
