@@ -24,4 +24,10 @@ public class RecipeService {
     public Collection<Recipe> findByIds(Collection<Long> ids) {
         return recipeRepository.findAllById(ids);
     }
+
+    @Transactional(readOnly = true)
+    public Recipe findById(Long id) {
+        return recipeRepository.findWithProductsById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recipe not found with id: " + id));
+    }
 }
