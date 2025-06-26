@@ -17,8 +17,8 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        format_sql: true
-    show-sql: true
+        format_sql: true # debug only
+    show-sql: true # debug only
     open-in-view: false
   data:
     jdbc:

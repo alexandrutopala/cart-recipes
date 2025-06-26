@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,12 @@ public class CartService {
         var recipes = recipeService.findByIds(recipeIds);
 
         if (recipeIds.size() != recipes.size()) {
-            throw new NotFoundException("One or more recipes not found"); // TODO: compute not found ids
+            var foundRecipeIds = recipes.stream()
+                    .map(Recipe::getId)
+                    .collect(Collectors.toSet());
+            var missingRecipeIds = new ArrayList<>(recipeIds);
+            missingRecipeIds.removeIf(foundRecipeIds::contains);
+            throw new NotFoundException("One or more recipes not found: " + missingRecipeIds);
         }
 
         var cart = cartRepository.findWithRecipesAndProductsById(cartId)
