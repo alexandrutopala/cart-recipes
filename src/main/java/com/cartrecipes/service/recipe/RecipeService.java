@@ -26,7 +26,7 @@ public class RecipeService {
     }
 
     @Transactional(readOnly = true)
-    public Recipe findById(Long id) {
+    public Recipe findWithProductsById(Long id) {
         return recipeRepository.findWithProductsById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Recipe not found with id: " + id));
     }
