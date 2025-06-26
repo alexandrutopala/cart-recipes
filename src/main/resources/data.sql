@@ -1,20 +1,20 @@
 -- Inserting sample products
 INSERT INTO products (id, name, price_in_cents) VALUES
-    (1, 'Organic Apples (1lb)', 299),
-    (2, 'Whole Grain Bread', 399),
-    (3, 'Free Range Eggs (12)', 499),
-    (4, 'Organic Milk (1gal)', 449),
-    (5, 'Grass-Fed Ground Beef (1lb)', 799),
-    (6, 'Organic Chicken Breast (1lb)', 699),
-    (7, 'Wild Caught Salmon (1lb)', 1299),
-    (8, 'Organic Spinach (1lb)', 349),
-    (9, 'Avocados (each)', 199),
-    (10, 'Organic Tomatoes (1lb)', 349),
-    (11, 'Almond Butter (16oz)', 899),
-    (12, 'Quinoa (1lb)', 599),
-    (13, 'Extra Virgin Olive Oil (16oz)', 799),
-    (14, 'Greek Yogurt (32oz)', 449),
-    (15, 'Dark Chocolate Bar', 349);
+    (1, 'Organic Apples (1lb)', 300),
+    (2, 'Whole Grain Bread', 400),
+    (3, 'Free Range Eggs (12)', 500),
+    (4, 'Organic Milk (1gal)', 450),
+    (5, 'Grass-Fed Ground Beef (1lb)', 800),
+    (6, 'Organic Chicken Breast (1lb)', 700),
+    (7, 'Wild Caught Salmon (1lb)', 1300),
+    (8, 'Organic Spinach (1lb)', 350),
+    (9, 'Avocados (each)', 200),
+    (10, 'Organic Tomatoes (1lb)', 350),
+    (11, 'Almond Butter (16oz)', 900),
+    (12, 'Quinoa (1lb)', 600),
+    (13, 'Extra Virgin Olive Oil (16oz)', 800),
+    (14, 'Greek Yogurt (32oz)', 450),
+    (15, 'Dark Chocolate Bar', 350);
 
 -- Inserting sample recipes (prices will be updated in a later statement)
 INSERT INTO recipes (id, name, price_in_cents) VALUES
