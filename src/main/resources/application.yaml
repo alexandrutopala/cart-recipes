@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: cart-recipes
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:cart-recipes
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  data:
+    jdbc:
+      dialect: h2
+
+server:
+  port: 8080
+
