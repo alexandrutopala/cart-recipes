@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "recipes")
@@ -33,5 +33,5 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false),
             uniqueConstraints = @UniqueConstraint(columnNames = {"recipe_id", "product_id"}, name = "uk_recipe_items")
     )
-    private Collection<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
 }

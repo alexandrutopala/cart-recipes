@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "carts")
@@ -30,7 +31,7 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false),
             uniqueConstraints = @UniqueConstraint(columnNames = {"cart_id", "product_id"}, name = "uk_cart_items")
     )
-    private Collection<Product> products = new HashSet<>();
+    private Set<Product> products = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -39,5 +40,5 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "recipe_id", referencedColumnName = "id", nullable = false),
             uniqueConstraints = @UniqueConstraint(columnNames = {"cart_id", "recipe_id"}, name = "uk_cart_recipes")
     )
-    private Collection<Recipe> recipes = new HashSet<>();
+    private Set<Recipe> recipes = new HashSet<>();
 }
