@@ -1,5 +1,6 @@
 package com.cartrecipes.service.cart;
 
+import com.cartrecipes.exception.DuplicateRecipeException;
 import com.cartrecipes.exception.NotFoundException;
 import com.cartrecipes.model.Cart;
 import com.cartrecipes.model.Recipe;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +36,15 @@ public class CartService {
         var cart = cartRepository.findWithRecipesAndProductsById(cartId)
                 .orElseThrow(() -> new NotFoundException("Cart not found with id: " + cartId));
 
-        cart.getRecipes().addAll(recipes);
+        var duplicateRecipeIds = recipes.stream()
+                .filter(recipe -> !cart.getRecipes().add(recipe))
+                .map(Recipe::getId)
+                .collect(Collectors.toSet());
+
+        if (!duplicateRecipeIds.isEmpty()) {
+            throw new DuplicateRecipeException(duplicateRecipeIds);
+        }
+
         cart.setTotalInCents(cart.getTotalInCents() + recipes.stream()
                 .mapToInt(Recipe::getPriceInCents)
                 .sum());
