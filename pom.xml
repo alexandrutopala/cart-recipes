@@ -135,6 +135,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<mainClass>com.cartrecipes.CartRecipesApplication</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
