@@ -1,5 +1,6 @@
 package com.cartrecipes.service.recipe
 
+import com.cartrecipes.exception.NotFoundException
 import com.cartrecipes.model.Recipe
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -23,6 +24,11 @@ class RecipeService internal constructor (
 
     @Transactional(readOnly = true)
     fun findWithProductsById(id: Long): Recipe {
-        return recipeRepository.findWithProductsById(id) ?: throw NoSuchElementException("Recipe not found with id: $id")
+        return recipeRepository.findWithProductsById(id) ?: throw NotFoundException("Recipe not found with id: $id")
+    }
+
+    @Transactional(readOnly = true)
+    fun findById(id: Long): Recipe {
+        return recipeRepository.findById(id).orElseThrow { NotFoundException("Recipe not found with id: $id") }
     }
 }

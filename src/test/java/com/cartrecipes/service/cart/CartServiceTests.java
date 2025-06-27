@@ -8,7 +8,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import com.cartrecipes.exception.DuplicateRecipeException;
@@ -51,7 +50,7 @@ class CartServiceTests {
     @Test
     void GIVEN_cart_and_recipe_WHEN_add_recipes_THEN_recipe_added_and_total_updated() {
         when(recipeService.findByIds(anySet())).thenReturn(Set.of(recipe1));
-        when(cartRepository.findWithRecipesAndProductsById(1L)).thenReturn(Optional.of(testCart));
+        when(cartRepository.findWithRecipesAndProductsById(1L)).thenReturn(testCart);
         when(cartRepository.save(any(Cart.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Cart result = cartService.addRecipes(1L, Set.of(1L));
@@ -63,7 +62,7 @@ class CartServiceTests {
     @Test
     void GIVEN_cart_and_multiple_recipes_WHEN_add_recipes_THEN_recipes_added_and_total_updated() {
         when(recipeService.findByIds(anySet())).thenReturn(Set.of(recipe1, recipe2));
-        when(cartRepository.findWithRecipesAndProductsById(1L)).thenReturn(Optional.of(testCart));
+        when(cartRepository.findWithRecipesAndProductsById(1L)).thenReturn(testCart);
         when(cartRepository.save(any(Cart.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
         Cart result = cartService.addRecipes(1L, Set.of(1L, 2L));
@@ -75,7 +74,7 @@ class CartServiceTests {
     @Test
     void GIVEN_non_existing_cart_WHEN_add_recipes_THEN_not_found() {
         when(recipeService.findByIds(anySet())).thenReturn(Set.of(recipe1));
-        when(cartRepository.findWithRecipesAndProductsById(99L)).thenReturn(Optional.empty());
+        when(cartRepository.findWithRecipesAndProductsById(99L)).thenReturn(null);
 
         assertThatThrownBy(() -> cartService.addRecipes(99L, Set.of(1L)))
                 .isInstanceOf(NotFoundException.class)
@@ -96,7 +95,7 @@ class CartServiceTests {
         testCart.getRecipes().add(recipe1); // Add recipe1 to cart first
 
         when(recipeService.findByIds(anySet())).thenReturn(Set.of(recipe1));
-        when(cartRepository.findWithRecipesAndProductsById(1L)).thenReturn(Optional.of(testCart));
+        when(cartRepository.findWithRecipesAndProductsById(1L)).thenReturn(testCart);
 
         assertThatThrownBy(() -> cartService.addRecipes(1L, Set.of(1L)))
                 .isInstanceOf(DuplicateRecipeException.class)
