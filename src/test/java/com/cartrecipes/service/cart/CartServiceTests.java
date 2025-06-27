@@ -41,20 +41,11 @@ class CartServiceTests {
 
     @BeforeEach
     void setUp() {
-        recipe1 = new Recipe();
-        recipe1.setId(1L);
-        recipe1.setName("Recipe 1");
-        recipe1.setPriceInCents(1000);
+        recipe1 = new Recipe(1L, "Recipe 1", 1000, new HashSet<>());
 
-        recipe2 = new Recipe();
-        recipe2.setId(2L);
-        recipe2.setName("Recipe 2");
-        recipe2.setPriceInCents(1500);
+        recipe2 = new Recipe(2L, "Recipe 2", 1500, new HashSet<>());
 
-        testCart = new Cart();
-        testCart.setId(1L);
-        testCart.setTotalInCents(0);
-        testCart.setRecipes(new HashSet<>());
+        testCart = new Cart(1L, 0, new HashSet<>(), new HashSet<>());
     }
 
     @Test
